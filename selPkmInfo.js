@@ -29,17 +29,19 @@ fetch('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151')
   .catch(error => console.error(error))
 
 const searchPkm = () => {
-  imgPkm.style.display = 'none';
-  spinner.style.display = 'block'
+  imgPkm.classList.toggle('d-none');
+  imgPkm.classList.toggle('d-block');
+  spinner.classList.toggle('d-none');
+  spinner.classList.toggle('d-block');
   const endpoint = url + 'pokemon/' + pkmSelection.value;
 
   fetch(endpoint)
     .then(res => res.json())
     .then(json => {
       imgPkm.src = `https://naramsim.github.io/Colosseum/images/pokemons/${pkmSelection.value}.svg`;
-      imgPkm.style.height = '100%';
-      imgPkm.style.width = '100%';
-      pkmNum.innerText = pkmSelection.value.padStart(3, 0);
+      // imgPkm.style.height = '100px';
+      // imgPkm.style.width = '100px';
+      pkmNum.innerText = `#${pkmSelection.value.padStart(3, 0)}`;
       if(json.types.length == 2) {
         liType2.style.display = 'inline';
         liType1.innerText = capitalize(json.types[0].type.name);
@@ -61,6 +63,8 @@ submitSearch.addEventListener('click', () => {
 })
 
 imgPkm.addEventListener('load', () => {
-  spinner.style.display = 'none';
-  imgPkm.style.display = 'block';
+  spinner.classList.toggle('d-none');
+  spinner.classList.toggle('d-block');
+  imgPkm.classList.toggle('d-none');
+  imgPkm.classList.toggle('d-block');
 })

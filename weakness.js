@@ -34,6 +34,7 @@ export const pkmWeaknessAndResistances = (...types) => {
       if(obj[key] !== 1) {
         const liDmgTkn = document.createElement('li');
         liDmgTkn.innerText = `${key[0].toUpperCase()+key.slice(1)} x${obj[key]}`;
+        liDmgTkn.classList.toggle('list-group-item')
         ulDmgTkn.appendChild(liDmgTkn);
       }
     }
